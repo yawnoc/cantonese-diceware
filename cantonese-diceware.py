@@ -26,7 +26,7 @@ DICE_ROLLS = itertools.product('123456', repeat = 5)
 DICE_ROLLS = ["".join(d) for d in DICE_ROLLS]
 
 ################################################################
-# List of initials (24)
+# List of initials (24) in Conway's Custom Romanisation
 ################################################################
 
 # Here ? denotes the null initial.
@@ -43,10 +43,10 @@ INITIALS = ("""\
   ts ts' ch ch' s sh y
   r
   """
-).split()
+)
 
 ################################################################
-# List of finals (60)
+# List of finals (60) in Conway's Custom Romanisation
 ################################################################
 
 # Here we use the ASCII substitutes
@@ -68,7 +68,7 @@ FINALS = ("""\
   ue uen uet
   m ng
   """
-).split()
+)
 
 ################################################################
 # List of pitches (6)
@@ -77,7 +77,7 @@ FINALS = ("""\
 # I only refer to pitches as tones after entering tones have been canonicalised
 # as tones 7, 8 and 9.
 
-PITCHES = map(str, range(1, 1 + 6))
+PITCHES = " ".join(map(str, range(1, 1 + 6)))
 
 ################################################################
 # List of non-Conway romanisation schemes
@@ -215,18 +215,20 @@ def regex_replace(patt, repl, string, count = 0):
 def main():
   
   # ----------------------------------------------------------------
-  # Generate all syllables
+  # Generate all syllables in Conway's Custom Romanisation
   # ----------------------------------------------------------------
   
   # Take Cartesian product of the lists of initials, finals and pitches
-  syllables = itertools.product(INITIALS, FINALS, PITCHES)
+  conway_syllables = itertools.product(
+    *[component.split() for component in [INITIALS, FINALS, PITCHES]]
+  )
   # (8640 syllables)
   
   # Join each combination using | as the separator
-  syllables = ["|".join(s) for s in syllables]
+  conway_syllables = ["|".join(s) for s in conway_syllables]
   
   # Put them into a newline-separated string
-  syllables = "\n".join(syllables)
+  conway_syllables = "\n".join(conway_syllables)
   
   # ----------------------------------------------------------------
   # Filter unpronounceable syllables
@@ -234,11 +236,11 @@ def main():
   
   # Remove all syllables with
   # non-null initial (not ?) and pure nasal final (m or ng)
-  syllables = regex_remove("^[^?|]+[|](?:m|ng)[|].$", syllables)
+  conway_syllables = regex_remove("^[^?|]+[|](?:m|ng)[|].$", conway_syllables)
   # (8364 syllables)
   
   # Remove entering tones vernacularised as tone 5
-  syllables = regex_remove("^.+[ptk][|]5$", syllables)
+  conway_syllables = regex_remove("^.+[ptk][|]5$", conway_syllables)
   # (7884 syllables)
   
   # ----------------------------------------------------------------
@@ -246,29 +248,29 @@ def main():
   # ----------------------------------------------------------------
   
   # Remove entering tones vernacularised as tone 4
-  syllable_surplus = len(syllables.split()) - 6 ** 5
-  syllables = regex_remove("^.+[ptk][|]4$", syllables, syllable_surplus)
+  syllable_surplus = len(conway_syllables.split()) - 6 ** 5
+  conway_syllables = regex_remove("^.+[ptk][|]4$", conway_syllables, syllable_surplus)
   # (7776 syllables)
   
   # ----------------------------------------------------------------
   # Canonicalise non-vernacularised entering tones
   # ----------------------------------------------------------------
   
-  syllables = regex_replace("([ptk][|])1", r"\g<1>7", syllables)
-  syllables = regex_replace("([ptk][|])3", r"\g<1>8", syllables)
-  syllables = regex_replace("([ptk][|])6", r"\g<1>9", syllables)
+  conway_syllables = regex_replace("([ptk][|])1", r"\g<1>7", conway_syllables)
+  conway_syllables = regex_replace("([ptk][|])3", r"\g<1>8", conway_syllables)
+  conway_syllables = regex_replace("([ptk][|])6", r"\g<1>9", conway_syllables)
   
   # ----------------------------------------------------------------
   # Convert Conway's Custom Romanisation to other romanisations
   # ----------------------------------------------------------------
   
   syllables_dictionary = {}
-  syllables_dictionary["conway"] = syllables
+  syllables_dictionary["conway"] = conway_syllables
   
   for romanisation in NON_CONWAY_ROMANISATIONS:
     
     syllables_dictionary[romanisation] = (
-      convert_romanisation(romanisation, syllables)
+      convert_romanisation(romanisation, conway_syllables)
     )
   
   # ----------------------------------------------------------------
