@@ -4,7 +4,7 @@
 # cantonese-diceware.py
 # Modified: 20191101
 ################################################################
-# Generates a Diceware list of pronounceable Cantonese syllables
+# Generates Diceware lists of pronounceable Cantonese syllables
 # (including gibberish and pseudo-English).
 # ----------------------------------------------------------------
 # See also: Conway's Custom Romanisation for Cantonese
@@ -17,6 +17,13 @@
 
 import itertools
 import re
+
+################################################################
+# List of dice rolls (7776)
+################################################################
+
+DICE_ROLLS = itertools.product('123456', repeat = 5)
+DICE_ROLLS = ["".join(d) for d in DICE_ROLLS]
 
 ################################################################
 # List of initials (24)
@@ -67,23 +74,139 @@ FINALS = ("""\
 # List of pitches (6)
 ################################################################
 
+# I only refer to pitches as tones after entering tones have been canonicalised
+# as tones 7, 8 and 9.
+
 PITCHES = map(str, range(1, 1 + 6))
+
+################################################################
+# List of non-Conway romanisation schemes
+################################################################
+
+ROMANISATIONS = [
+  "conway",
+  "jyutping"
+]
+
+NON_CONWAY_ROMANISATIONS = ROMANISATIONS[1:]
+
+################################################################
+# Dictionaries of romanisation conversion rules
+################################################################
+
+ROMANISATION_CONVERSIONS_DICTIONARY = {}
+
+for romanisation in NON_CONWAY_ROMANISATIONS:
+  
+  ROMANISATION_CONVERSIONS_DICTIONARY[romanisation] = {}
+
+# ----------------------------------------------------------------
+# Initials
+# ----------------------------------------------------------------
+
+# NOTE: I have added zh, ch and sh to Jyutping for ch, ch' and sh.
+ROMANISATION_CONVERSIONS_DICTIONARY["jyutping"]["initials"] = """\
+  p b
+  p' p
+  t d
+  t' t
+  k g
+  k' k
+  kw gw
+  k'w kw
+  ts z
+  ts' c
+  ch zh
+  ch' ch
+  y j
+  """
+
+# ----------------------------------------------------------------
+# Finals
+# ----------------------------------------------------------------
+
+ROMANISATION_CONVERSIONS_DICTIONARY["jyutping"]["finals"] = """\
+  ee i
+  eeu iu
+  eem im
+  een in
+  eep ip
+  eet it
+  or o
+  orn on
+  ort ot
+  oo u
+  ooi ui
+  oon un
+  oot ut
+  _ue eoi
+  _n eon
+  _t eot
+  ue yu
+  uen yun
+  uet yut
+  """
+
+# ----------------------------------------------------------------
+# Tones
+# ----------------------------------------------------------------
+
+# All non-Conway romanisations have 1, 3 and 6 for entering tones 7, 8 and 9
+
+for romanisation in NON_CONWAY_ROMANISATIONS:
+  
+  ROMANISATION_CONVERSIONS_DICTIONARY[romanisation]["tones"] = """\
+    7 1
+    8 3
+    9 6
+  """
+
+################################################################
+# Convert romanisations
+################################################################
+
+def convert_romanisation(romanisation, syllables):
+  
+  for type in ROMANISATION_CONVERSIONS_DICTIONARY[romanisation]:
+    
+    rules = ROMANISATION_CONVERSIONS_DICTIONARY[romanisation][type]
+    rules = rules.split()
+    
+    # Entries 0, 2, 4, etc. are patterns
+    patts = rules[0::2]
+    
+    # Entries 1, 3, 5, etc. are replacements
+    repls = rules[1::2]
+    
+    # Make patterns and replacements unambiguous (using | separator)
+    if type == "initials":
+      patts = ["^" + p + "[|]" for p in patts]
+      repls = [r + "|" for r in repls]
+    elif type == "finals":
+      patts = ["[|]" + p for p in patts]
+      repls = ["|" + r for r in repls]
+    
+    # Perform replacements
+    for p, r in zip(patts, repls):
+      syllables = regex_replace(p, r, syllables)
+    
+  return syllables
 
 ################################################################
 # Remove a regular expression (i.e. replace with the empty string)
 ################################################################
 
-def regex_remove(pattern, string, count = 0):
+def regex_remove(patt, string, count = 0):
   
-  return regex_replace(pattern, "", string, count = count)
+  return regex_replace(patt, "", string, count = count)
 
 ################################################################
 # Replace a regular expression
 ################################################################
 
-def regex_replace(pattern, repl, string, count = 0):
+def regex_replace(patt, repl, string, count = 0):
   
-  return re.sub(pattern, repl, string, count = count, flags = re.MULTILINE)
+  return re.sub(patt, repl, string, count = count, flags = re.MULTILINE)
 
 ################################################################
 # Main
@@ -136,29 +259,48 @@ def main():
   syllables = regex_replace("([ptk][|])6", r"\g<1>9", syllables)
   
   # ----------------------------------------------------------------
+  # Convert Conway's Custom Romanisation to other romanisations
+  # ----------------------------------------------------------------
+  
+  syllables_dictionary = {}
+  syllables_dictionary["conway"] = syllables
+  
+  for romanisation in NON_CONWAY_ROMANISATIONS:
+    
+    syllables_dictionary[romanisation] = (
+      convert_romanisation(romanisation, syllables)
+    )
+  
+  # ----------------------------------------------------------------
   # Make pretty and output to file
   # ----------------------------------------------------------------
   
-  # Remove null initial markers ?
-  syllables = regex_remove("[?]", syllables)
-  
-  # Remove separators |
-  syllables = regex_remove("[|]", syllables)
-  
-  # Sort
-  syllables = sorted(syllables.split())
-  
-  # Prefix with dice rolls
-  dice_rolls = itertools.product('123456', repeat = 5)
-  dice_rolls = ["".join(d) for d in dice_rolls]
-  syllables = ["{} {}".format(d, s) for d, s in zip(dice_rolls, syllables)]
-  
-  # Put into a newline-separated string
-  syllables = "\n".join(syllables)
-  
-  # Output
-  output_file = open("cantonese-diceware.txt", "w", encoding = "utf-8")
-  output_file.write(syllables)
+  for romanisation in ROMANISATIONS:
+    
+    syllables = syllables_dictionary[romanisation]
+    
+    # Remove null initial markers ?
+    syllables = regex_remove("[?]", syllables)
+    
+    # Remove separators |
+    syllables = regex_remove("[|]", syllables)
+    
+    # Sort
+    syllables = sorted(syllables.split())
+    
+    # Prefix with dice rolls
+    syllables = ["{} {}".format(d, s) for d, s in zip(DICE_ROLLS, syllables)]
+    
+    # Put into a newline-separated string
+    syllables = "\n".join(syllables)
+    
+    # Output
+    output_file = open(
+      "cantonese-diceware-{}.txt".format(romanisation),
+      "w",
+      encoding = "utf-8"
+    )
+    output_file.write(syllables)
 
 if __name__ == "__main__":
   
