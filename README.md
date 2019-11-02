@@ -26,17 +26,25 @@ The list of syllables is generated in
 [Conway's Custom Romanisation for Cantonese][ccr]
 before being converted to other romanisation schemes.
 
-The **bold** entries below do not exist in the proper versions
-of the corresponding romanisations:
+The round-bracketed entries below do not exist
+in the corresponding romanisations, and have been added to account for
+the unmerged pairs {[ts] vs [tɕ]}, {[tsʰ] vs [tɕʰ]} and {[s] vs [ɕ]}:
 
-| Romanisation | [r] | [ts] | [tɕ] | [tsʰ] | [tɕʰ] | [s] | [ɕ] | [ɛːn] | [ɛːt̚] | [œːn] | [œːt̚]
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| [Conway][ccr] ([list][lc]) | **r** | ts | ch | ts' | ch' | s | sh | **en** | **et** | **oen** | **oet** |
-| [Jyutping][jtp] ([list][lj]) | **r** | z | **zh** | c | **ch** | s | **sh** | **en** | **et** | **oen** | **oet** |
+| Romanisation | [ts] | [tɕ] | [tsʰ] | [tɕʰ] | [s] | [ɕ] |
+| --- | --- | --- | --- | --- | --- | --- |
+| [Conway][ccr] ([list][lc]) | ts | ch | ts' | ch' | s | sh |
+| [Jyutping][jtp] ([list][lj]) | z | (zh) | c | (ch) | s | (sh) |
+
+The following are pseudo-English sounds:
+
+| Romanisation | [r] | [ɛːn] | [ɛːt̚] | [œːn] | [œːt̚]
+| --- | --- | --- | --- | --- | --- |
+| [Conway][ccr] ([list][lc]) | r | en | et | oen | oet |
+| [Jyutping][jtp] ([list][lj]) | r | en | et | oen | oet |
 
 [ccr]: https://yawnoc.github.io/pages/conway-cantonese-romanisation.html
 [d]: http://world.std.com/~reinhold/diceware.html
 [df]: http://world.std.com/%7Ereinhold/dicewarefaq.html
-[jtp]: https://en.wikipedia.org/wiki/Jyutping
+[jtp]: https://www.lshk.org/jyutping
 [lc]: cantonese-diceware-conway.txt
 [lj]: cantonese-diceware-jyutping.txt
