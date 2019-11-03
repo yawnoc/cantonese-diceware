@@ -34,6 +34,7 @@ the unmerged pairs {[ts] vs [tɕ]}, {[tsʰ] vs [tɕʰ]} and {[s] vs [ɕ]}:
 | --- | --- | --- | --- | --- | --- | --- |
 | [Conway][ccr] ([list][lc]) | ts | ch | ts' | ch' | s | sh |
 | [Jyutping][jtp] ([list][lj]) | z | (zh) | c | (ch) | s | (sh) |
+| [Sidney Lau][sl] ([list][ls]) | j | (jh) | ch | (chh) | s | (sh) |
 
 The following are pseudo-English sounds:
 
@@ -41,10 +42,13 @@ The following are pseudo-English sounds:
 | --- | --- | --- | --- | --- | --- |
 | [Conway][ccr] ([list][lc]) | r | en | et | oen | oet |
 | [Jyutping][jtp] ([list][lj]) | r | en | et | oen | oet |
+| [Sidney Lau][sl] ([list][ls]) | r | en | et | eun | eut |
 
 [ccr]: https://yawnoc.github.io/pages/conway-cantonese-romanisation.html
 [d]: http://world.std.com/~reinhold/diceware.html
 [df]: http://world.std.com/%7Ereinhold/dicewarefaq.html
 [jtp]: https://www.lshk.org/jyutping
+[sl]: http://sidneylau.com/
 [lc]: cantonese-diceware-conway.txt
 [lj]: cantonese-diceware-jyutping.txt
+[ls]: cantonese-diceware-sidney_lau.txt
