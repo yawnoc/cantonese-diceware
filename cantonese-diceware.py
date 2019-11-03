@@ -2,7 +2,7 @@
 
 ################################################################
 # cantonese-diceware.py
-# Modified: 20191101
+# Modified: 20191103
 ################################################################
 # Generates Diceware lists of pronounceable Cantonese syllables
 # (including gibberish and pseudo-English).
@@ -85,7 +85,8 @@ PITCHES = " ".join(map(str, range(1, 1 + 6)))
 
 ROMANISATIONS = [
   "conway",
-  "jyutping"
+  "jyutping",
+  "sidney_lau"
 ]
 
 NON_CONWAY_ROMANISATIONS = ROMANISATIONS[1:]
@@ -121,6 +122,23 @@ ROMANISATION_CONVERSIONS_DICTIONARY["jyutping"]["initials"] = """\
   y j
   """
 
+# NOTE: I have added jh, chh and sh to Sidney Lau for ch, ch' and sh.
+# The replacement ch -> jh must be performed before ts' -> ch.
+ROMANISATION_CONVERSIONS_DICTIONARY["sidney_lau"]["initials"] = """\
+  p b
+  p' p
+  t d
+  t' t
+  k g
+  k' k
+  kw gw
+  k'w kw
+  ch jh
+  ch' chh
+  ts j
+  ts' ch
+  """
+
 # ----------------------------------------------------------------
 # Finals
 # ----------------------------------------------------------------
@@ -145,6 +163,28 @@ ROMANISATION_CONVERSIONS_DICTIONARY["jyutping"]["finals"] = """\
   ue yu
   uen yun
   uet yut
+  """
+
+ROMANISATION_CONVERSIONS_DICTIONARY["sidney_lau"]["finals"] = """\
+  aa a
+  ee i
+  eeu iu
+  eem im
+  een in
+  eep ip
+  eet it
+  or oh
+  ou o
+  orn on
+  ort ot
+  oe euh
+  oen eun
+  oeng eung
+  oet eut
+  oek euk
+  _ue ui
+  _n un
+  _t ut
   """
 
 # ----------------------------------------------------------------
@@ -183,8 +223,8 @@ def convert_romanisation(romanisation, syllables):
       patts = ["^" + p + "[|]" for p in patts]
       repls = [r + "|" for r in repls]
     elif type == "finals":
-      patts = ["[|]" + p for p in patts]
-      repls = ["|" + r for r in repls]
+      patts = ["[|]" + p + "[|]" for p in patts]
+      repls = ["|" + r + "|" for r in repls]
     
     # Perform replacements
     for p, r in zip(patts, repls):
