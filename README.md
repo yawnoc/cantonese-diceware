@@ -1,7 +1,7 @@
 # Cantonese Diceware
 
-Lists of `6 ** 5 == 7776` pronounceable syllables is Cantonese,
-including gibberish and pseudo-English.
+Lists of `6 ** 5 == 7776` pronounceable syllables in Cantonese,
+including gibberish and pseudo-English, to be used for building passphrases.
 
 Roll your own physical dice to get
 `5 * log(6) / log(2) == 12.9` bits of entropy per word.
@@ -17,8 +17,8 @@ To boost the number of syllables to the required quantity, I have:
 3. Added the pseudo-English finals [ɛːn], [ɛːt̚], [œːn] and [œːt̚].
 
 I have only included entering tones (入聲) in their usual pitches
-(7, 8 and 9 or 1, 3 and 6) and vernacularised in tones 2 and 4;
-no word of entering tone appears in tone 5.
+(7, 8 and 9 or 1, 3 and 6) and vernacularised in tones 2 and 4.
+No word of entering tone appears in tone 5.
 
 ## Romanisations
 
