@@ -2,7 +2,6 @@
 
 ################################################################
 # cantonese-diceware.py
-# Modified: 20191103
 ################################################################
 # Generates Diceware lists of pronounceable Cantonese syllables
 # (including gibberish and pseudo-English).
