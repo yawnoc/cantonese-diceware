@@ -336,12 +336,12 @@ def main():
     syllables = "\n".join(syllables)
     
     # Output
-    output_file = open(
+    with open(
       "cantonese-diceware-{}.txt".format(romanisation),
       "w",
       encoding = "utf-8"
-    )
-    output_file.write(syllables)
+    ) as output_file:
+      output_file.write(syllables)
 
 if __name__ == "__main__":
   
