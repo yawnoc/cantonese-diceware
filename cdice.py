@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 ################################################################
-# cantonese-diceware.py
+# cdice.py
 ################################################################
 # Generates Diceware lists of pronounceable Cantonese syllables
 # (including gibberish and pseudo-English).
