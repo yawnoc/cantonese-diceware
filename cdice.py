@@ -333,7 +333,7 @@ def main():
     syllables = ["{} {}".format(d, s) for d, s in zip(DICE_ROLLS, syllables)]
     
     # Put into a newline-separated string
-    syllables = "\n".join(syllables)
+    syllables = "\n".join(syllables) + "\n"
     
     # Output
     with open(
