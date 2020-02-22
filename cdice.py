@@ -7,7 +7,7 @@
 # (including gibberish and pseudo-English).
 # ----------------------------------------------------------------
 # See also: Conway's Custom Romanisation for Cantonese
-#   https://yawnoc.github.io/pages/conway-cantonese-romanisation.html
+#   https://yawnoc.github.io/cantonese/conway-romanisation.html
 # ----------------------------------------------------------------
 # Released into the public domain (CC0):
 #   https://creativecommons.org/publicdomain/zero/1.0/
