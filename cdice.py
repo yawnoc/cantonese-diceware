@@ -20,17 +20,13 @@ import itertools
 import re
 
 
-################################################################
 # List of dice rolls (7776)
-################################################################
 
 DICE_ROLLS = itertools.product('123456', repeat=5)
 DICE_ROLLS = ["".join(d) for d in DICE_ROLLS]
 
 
-################################################################
 # List of initials (24) in Conway's Custom Romanisation
-################################################################
 
 # Here ? denotes the null initial.
 
@@ -49,9 +45,7 @@ INITIALS = ("""\
 )
 
 
-################################################################
 # List of finals (60) in Conway's Custom Romanisation
-################################################################
 
 # Here we use the ASCII substitutes
 #   oe for œ (U+0153),
@@ -75,9 +69,7 @@ FINALS = ("""\
 )
 
 
-################################################################
 # List of pitches (6)
-################################################################
 
 # I only refer to pitches as tones after entering tones have been canonicalised
 # as tones 7, 8 and 9.
@@ -85,9 +77,7 @@ FINALS = ("""\
 PITCHES = " ".join(map(str, range(1, 1 + 6)))
 
 
-################################################################
-# List of non-Conway romanisation schemes
-################################################################
+# List of all and non-Conway romanisation schemes
 
 ROMANISATIONS = [
   "conway",
@@ -98,19 +88,14 @@ ROMANISATIONS = [
 NON_CONWAY_ROMANISATIONS = ROMANISATIONS[1:]
 
 
-################################################################
-# Dictionaries of romanisation conversion rules
-################################################################
+# Dictionaries of romanisation conversion rules...
 
 ROMANISATION_CONVERSIONS_DICTIONARY = {}
 
 for romanisation in NON_CONWAY_ROMANISATIONS:
-  
   ROMANISATION_CONVERSIONS_DICTIONARY[romanisation] = {}
 
-# ----------------------------------------------------------------
-# Initials
-# ----------------------------------------------------------------
+# ...for initials
 
 # NOTE: I have added zh, ch and sh to Jyutping for ch, ch' and sh.
 ROMANISATION_CONVERSIONS_DICTIONARY["jyutping"]["initials"] = """\
@@ -145,10 +130,8 @@ ROMANISATION_CONVERSIONS_DICTIONARY["sidney_lau"]["initials"] = """\
   ts j
   ts' ch
   """
-
-# ----------------------------------------------------------------
-# Finals
-# ----------------------------------------------------------------
+  
+# ...for finals
 
 ROMANISATION_CONVERSIONS_DICTIONARY["jyutping"]["finals"] = """\
   ee i
@@ -193,11 +176,8 @@ ROMANISATION_CONVERSIONS_DICTIONARY["sidney_lau"]["finals"] = """\
   _n un
   _t ut
   """
-
-
-# ----------------------------------------------------------------
-# Tones
-# ----------------------------------------------------------------
+  
+# ...for tones
 
 # All non-Conway romanisations have 1, 3 and 6 for entering tones 7, 8 and 9
 
@@ -209,10 +189,6 @@ for romanisation in NON_CONWAY_ROMANISATIONS:
     9 6
   """
 
-
-################################################################
-# Convert romanisations
-################################################################
 
 def convert_romanisation(romanisation, syllables):
   """
@@ -245,9 +221,6 @@ def convert_romanisation(romanisation, syllables):
   return syllables
 
 
-################################################################
-# Remove a regular expression (i.e. replace with the empty string)
-################################################################
 
 def regex_remove(patt, string, count=0):
   """
@@ -256,9 +229,7 @@ def regex_remove(patt, string, count=0):
   
   return regex_replace(patt, "", string, count=count)
 
-################################################################
-# Replace a regular expression
-################################################################
+
 
 def regex_replace(patt, repl, string, count=0):
   """
@@ -267,9 +238,7 @@ def regex_replace(patt, repl, string, count=0):
   
   return re.sub(patt, repl, string, count=count, flags=re.MULTILINE)
 
-################################################################
-# Main
-################################################################
+
 
 def main():
   
