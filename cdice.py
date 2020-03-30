@@ -1,28 +1,32 @@
 #!/usr/bin/python
 
-################################################################
-# cdice.py
-################################################################
-# Generates Diceware lists of pronounceable Cantonese syllables
-# (including gibberish and pseudo-English).
-# ----------------------------------------------------------------
-# See also: Conway's Custom Romanisation for Cantonese
-#   https://yawnoc.github.io/cantonese/conway-romanisation.html
-# ----------------------------------------------------------------
-# Released into the public domain (CC0):
-#   https://creativecommons.org/publicdomain/zero/1.0/
-# ABSOLUTELY NO WARRANTY, i.e. "GOD SAVE YOU"
-################################################################
+"""
+----------------------------------------------------------------
+cdice.py
+----------------------------------------------------------------
+Generates Diceware lists of pronounceable Cantonese syllables
+(including gibberish and pseudo-English).
+----------------------------------------------------------------
+See also: Conway's Custom Romanisation for Cantonese
+  <https://yawnoc.github.io/cantonese/conway-romanisation.html>
+----------------------------------------------------------------
+Released into the public domain (CC0):
+  <https://creativecommons.org/publicdomain/zero/1.0/>
+ABSOLUTELY NO WARRANTY, i.e. "GOD SAVE YOU"
+"""
+
 
 import itertools
 import re
+
 
 ################################################################
 # List of dice rolls (7776)
 ################################################################
 
-DICE_ROLLS = itertools.product('123456', repeat = 5)
+DICE_ROLLS = itertools.product('123456', repeat=5)
 DICE_ROLLS = ["".join(d) for d in DICE_ROLLS]
+
 
 ################################################################
 # List of initials (24) in Conway's Custom Romanisation
@@ -43,6 +47,7 @@ INITIALS = ("""\
   r
   """
 )
+
 
 ################################################################
 # List of finals (60) in Conway's Custom Romanisation
@@ -69,6 +74,7 @@ FINALS = ("""\
   """
 )
 
+
 ################################################################
 # List of pitches (6)
 ################################################################
@@ -77,6 +83,7 @@ FINALS = ("""\
 # as tones 7, 8 and 9.
 
 PITCHES = " ".join(map(str, range(1, 1 + 6)))
+
 
 ################################################################
 # List of non-Conway romanisation schemes
@@ -89,6 +96,7 @@ ROMANISATIONS = [
 ]
 
 NON_CONWAY_ROMANISATIONS = ROMANISATIONS[1:]
+
 
 ################################################################
 # Dictionaries of romanisation conversion rules
@@ -186,6 +194,7 @@ ROMANISATION_CONVERSIONS_DICTIONARY["sidney_lau"]["finals"] = """\
   _t ut
   """
 
+
 # ----------------------------------------------------------------
 # Tones
 # ----------------------------------------------------------------
@@ -200,11 +209,15 @@ for romanisation in NON_CONWAY_ROMANISATIONS:
     9 6
   """
 
+
 ################################################################
 # Convert romanisations
 ################################################################
 
 def convert_romanisation(romanisation, syllables):
+  """
+  Convert syllables in Conway romanisation to romanisation.
+  """
   
   for type in ROMANISATION_CONVERSIONS_DICTIONARY[romanisation]:
     
@@ -231,21 +244,28 @@ def convert_romanisation(romanisation, syllables):
     
   return syllables
 
+
 ################################################################
 # Remove a regular expression (i.e. replace with the empty string)
 ################################################################
 
-def regex_remove(patt, string, count = 0):
+def regex_remove(patt, string, count=0):
+  """
+  Replace a regex pattern with the empty string.
+  """
   
-  return regex_replace(patt, "", string, count = count)
+  return regex_replace(patt, "", string, count=count)
 
 ################################################################
 # Replace a regular expression
 ################################################################
 
-def regex_replace(patt, repl, string, count = 0):
+def regex_replace(patt, repl, string, count=0):
+  """
+  Replace a regex pattern with a replacement (multiline mode).
+  """
   
-  return re.sub(patt, repl, string, count = count, flags = re.MULTILINE)
+  return re.sub(patt, repl, string, count=count, flags=re.MULTILINE)
 
 ################################################################
 # Main
@@ -339,7 +359,7 @@ def main():
     with open(
       "cantonese-diceware-{}.txt".format(romanisation),
       "w",
-      encoding = "utf-8"
+      encoding="utf-8"
     ) as output_file:
       output_file.write(syllables)
 
