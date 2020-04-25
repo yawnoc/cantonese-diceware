@@ -36,7 +36,7 @@
 | [粵拼][jtp]（[表][lj]） | r | en | et | oen | oet |
 | [劉錫祥][sl]（[表][ls]） | r | en | et | eun | eut |
 
-[ccr]: https://yawnoc.github.io/cantonese/conway-romanisation.html
+[ccr]: https://yawnoc.github.io/cantonese/conway-romanisation
 [d]: http://world.std.com/~reinhold/diceware.html
 [df]: http://world.std.com/%7Ereinhold/dicewarefaq.html
 [jtp]: https://www.lshk.org/jyutping

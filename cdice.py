@@ -8,7 +8,7 @@ Generates Diceware lists of pronounceable Cantonese syllables
 (including gibberish and pseudo-English).
 ----------------------------------------------------------------
 See also: Conway's Custom Romanisation for Cantonese
-  <https://yawnoc.github.io/cantonese/conway-romanisation.html>
+  <https://yawnoc.github.io/cantonese/conway-romanisation>
 ----------------------------------------------------------------
 Released into the public domain (CC0):
   <https://creativecommons.org/publicdomain/zero/1.0/>

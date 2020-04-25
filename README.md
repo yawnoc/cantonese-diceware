@@ -46,7 +46,7 @@ The following are pseudo-English sounds:
 | [Jyutping][jtp] ([list][lj]) | r | en | et | oen | oet |
 | [Sidney Lau][sl] ([list][ls]) | r | en | et | eun | eut |
 
-[ccr]: https://yawnoc.github.io/cantonese/conway-romanisation.html
+[ccr]: https://yawnoc.github.io/cantonese/conway-romanisation
 [d]: http://world.std.com/~reinhold/diceware.html
 [df]: http://world.std.com/%7Ereinhold/dicewarefaq.html
 [jtp]: https://www.lshk.org/jyutping
