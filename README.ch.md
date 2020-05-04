@@ -18,13 +18,13 @@
 
 ## 拼
 
-音表先以 [Conway 拼][ccr] 產生，然後再轉為他拼。
+音表先以 [Conway 拼][c] 產生，然後再轉為他拼。
 
 下列受括者，乃係各拼不收之音也，添之以承 {[ts] 與 [tɕ]}、{[tsʰ] 與 [tɕʰ]}、{[s] 與 [ɕ]} 之不併耳：
 
 | 拼 | [ts] | [tɕ] | [tsʰ] | [tɕʰ] | [s] | [ɕ] |
 | --- | --- | --- | --- | --- | --- | --- |
-| [Conway][ccr]（[表][lc]） | ts | ch | ts' | ch' | s | sh |
+| [Conway][c]（[表][lc]） | ts | ch | ts' | ch' | s | sh |
 | [粵拼][jtp]（[表][lj]） | z | (zh) | c | (ch) | s | (sh) |
 | [劉錫祥][sl]（[表][ls]） | j | (jh) | ch | (chh) | s | (sh) |
 
@@ -32,11 +32,11 @@
 
 | 拼 | [r] | [ɛːn] | [ɛːt̚] | [œːn] | [œːt̚]
 | --- | --- | --- | --- | --- | --- |
-| [Conway][ccr]（[表][lc]） | r | en | et | oen | oet |
+| [Conway][c]（[表][lc]） | r | en | et | oen | oet |
 | [粵拼][jtp]（[表][lj]） | r | en | et | oen | oet |
 | [劉錫祥][sl]（[表][ls]） | r | en | et | eun | eut |
 
-[ccr]: https://yawnoc.github.io/cantonese/conway-romanisation
+[c]: https://yawnoc.github.io/cantonese/conway-romanisation
 [d]: http://world.std.com/~reinhold/diceware.html
 [df]: http://world.std.com/%7Ereinhold/dicewarefaq.html
 [jtp]: https://www.lshk.org/jyutping

@@ -25,7 +25,7 @@ No word of entering tone is included as tone 5 (陽上).
 ## Romanisations
 
 The list of syllables is first generated in
-[Conway's Custom Romanisation for Cantonese][ccr]
+[Conway's Romanisation for Cantonese][c]
 before being converted to other romanisation schemes.
 
 The round-bracketed entries below do not exist
@@ -34,7 +34,7 @@ the unmerged pairs {[ts] vs [tɕ]}, {[tsʰ] vs [tɕʰ]} and {[s] vs [ɕ]}:
 
 | Romanisation | [ts] | [tɕ] | [tsʰ] | [tɕʰ] | [s] | [ɕ] |
 | --- | --- | --- | --- | --- | --- | --- |
-| [Conway][ccr] ([list][lc]) | ts | ch | ts' | ch' | s | sh |
+| [Conway][c] ([list][lc]) | ts | ch | ts' | ch' | s | sh |
 | [Jyutping][jtp] ([list][lj]) | z | (zh) | c | (ch) | s | (sh) |
 | [Sidney Lau][sl] ([list][ls]) | j | (jh) | ch | (chh) | s | (sh) |
 
@@ -42,11 +42,11 @@ The following are pseudo-English sounds:
 
 | Romanisation | [r] | [ɛːn] | [ɛːt̚] | [œːn] | [œːt̚]
 | --- | --- | --- | --- | --- | --- |
-| [Conway][ccr] ([list][lc]) | r | en | et | oen | oet |
+| [Conway][c] ([list][lc]) | r | en | et | oen | oet |
 | [Jyutping][jtp] ([list][lj]) | r | en | et | oen | oet |
 | [Sidney Lau][sl] ([list][ls]) | r | en | et | eun | eut |
 
-[ccr]: https://yawnoc.github.io/cantonese/conway-romanisation
+[c]: https://yawnoc.github.io/cantonese/conway-romanisation
 [d]: http://world.std.com/~reinhold/diceware.html
 [df]: http://world.std.com/%7Ereinhold/dicewarefaq.html
 [jtp]: https://www.lshk.org/jyutping
