@@ -10,9 +10,6 @@ Generates Diceware lists of pronounceable Cantonese syllables
 See also: Conway's Custom Romanisation for Cantonese
   <https://yawnoc.github.io/cantonese/conway-romanisation>
 ----------------------------------------------------------------
-Released into the public domain (CC0):
-  <https://creativecommons.org/publicdomain/zero/1.0/>
-ABSOLUTELY NO WARRANTY, i.e. "GOD SAVE YOU"
 """
 
 
